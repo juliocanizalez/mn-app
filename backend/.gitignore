@@ -1,0 +1,36 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Python env
+venv/
+.env
+
+# IDE-specific
+.vscode/
+.idea/
+
+# Compiled C extensions
+*.so
+
+# Logs and temporary files
+logs/
+*.log
+*.swp
+
+# Compiled files
+*.pyc
+*.pyo
+*.pyd
+
+# Dependency directories
+env/
+lib/
+libs/
+*.egg-info/
+dist/
+build/
+
+# Local development files
+db.sqlite3
