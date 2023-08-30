@@ -64,7 +64,7 @@ module.exports = configure((/* ctx */) => ({
 
     // publicPath: '/',
     // analyze: true,
-    // env: {},
+    env: { API: 'http://127.0.0.1:8000' },
     // rawDefine: {}
     // ignorePublicFolder: true,
     // minify: false,
@@ -105,7 +105,7 @@ module.exports = configure((/* ctx */) => ({
 
   // animations: 'all', // --- includes all animations
   // https://v2.quasar.dev/options/animations
-  animations: [],
+  animations: 'all',
 
   // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#sourcefiles
   // sourceFiles: {
