@@ -29,7 +29,7 @@ def calc_falsa_posicion(item: FalsaPosicion) -> List[str]:
             if err < item.err:
                 item.timeSpent = time.time() - startTime
 
-                item.logs.append(f"[RAIZ ENCONTRADA]")
+                item.logs.append(f"[RAIZ ENCONTRADA EN {i} ITERACIONES]")
                 item.logs.append(f"[{xi}]")
                 item.logs.append(f"[Tiempo][{item.timeSpent:.4f}s]")
 
