@@ -1,6 +1,10 @@
 <template>
-  <q-page class="row justify-center gap-1">
-    <q-form class="q-gutter-y-md q-mt-lg form-width-lg">
+  <q-page class="row justify-center gap-1 bg-grey-1 text-focus-in">
+    <q-form
+      class="q-gutter-y-md q-mt-lg form-width-lg"
+      @reset="onReset"
+      @submit="onSubmit"
+    >
       <h3 class="text-bold">Biseccion</h3>
       <div class="row gap-1">
         <p class="text-nm text-formula"><em>f(x) </em>=</p>
@@ -13,12 +17,16 @@
       </div>
       <q-input
         v-model="aVal"
+        type="number"
+        step="0.01"
         label="Valor de a"
         stack-label
         class="input-width-sm"
       />
       <q-input
         v-model="bVal"
+        type="number"
+        step="0.01"
         label="Valor de b"
         stack-label
         class="input-width-sm"
@@ -46,20 +54,50 @@
         </q-tooltip>
       </q-input>
       <q-space />
-      <button-component is-submit />
+      <div class="q-gutter-x-md">
+        <button-component is-submit />
+        <button-component label="Limpiar" flat type="reset" />
+      </div>
     </q-form>
     <div class="form-width-lg q-mt-xl">
-      <h6 class="q-mt-xl">Resultados</h6>
+      <card-log-component class="q-mt-xl" :data="dataArray" />
     </div>
   </q-page>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, Ref } from 'vue';
+import { api } from 'src/boot/axios';
+
 import ButtonComponent from 'src/components/ButtonComponent.vue';
+import CardLogComponent from 'src/components/CardLogComponent.vue';
+import { endpoints } from 'src/utils';
 
 const func = ref('');
-const aVal = ref('');
-const bVal = ref('');
+const aVal = ref();
+const bVal = ref();
 const errorText = '1%';
 const iteraciones = 100;
+const dataArray: Ref<string[]> = ref([]);
+
+const onSubmit = async () => {
+  const data = {
+    func: func.value,
+    aVal: aVal.value,
+    bVal: bVal.value,
+    iterations: iteraciones,
+    err: 0.01,
+  };
+
+  try {
+    const response = await api.post(endpoints.biseccion, data);
+    dataArray.value = response.data;
+  } catch (error) {
+    // Do nothing
+  }
+};
+const onReset = () => {
+  func.value = '';
+  aVal.value = 0;
+  bVal.value = 0;
+};
 </script>
