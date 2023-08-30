@@ -1,6 +1,6 @@
 <template>
   <q-btn
-    color="secondary"
+    color="primary"
     :label="label! || 'Calcular'"
     :type="isSubmit ? 'subtmit' : 'button'"
   ></q-btn>
